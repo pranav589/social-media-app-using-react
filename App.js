@@ -7,7 +7,7 @@ function App() {
   useEffect(()=>{
     function callFunc(){
       userRef.set({
-        Email:'xy@gmail.com',
+        Email:'pranav@gmail.com',
         Password:'12345'
       })
     }
