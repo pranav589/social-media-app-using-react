@@ -13,17 +13,23 @@ function App() {
         Password:'12345'
       })
     }
-    callFunc()
+    //callFunc()
   },[])
 
   const onSignIn=()=>{
-    const result =signIn("pqr@gmail.com","1234556nknkj")
+    const result =signIn("lpaakx@gmail.com","1234556nknkj")
+    console.log(result)
+  }
+
+   const onSignUp=()=>{
+    const result =signUp("lpaakx@gmail.com","1234556nknkj",'pranav','bakale')
     console.log(result)
   }
 
   return (
     <div className="App">
       <button onClick={()=>onSignIn()}>Sign In</button>
+      <button onClick={()=>onSignUp()}>Sign Up</button>
     </div>
   );
 }
