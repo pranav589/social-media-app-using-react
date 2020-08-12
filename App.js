@@ -1,23 +1,29 @@
 import React, { useEffect } from "react";
 
 import {userRef} from './firebase'
+import signUp from './api/SignUp'
+import signIn from './api/SignIn'
 
 
 function App() {
   useEffect(()=>{
     function callFunc(){
-      userRef.set({
-        Email:'pranav@gmail.com',
+      userRef.push({
+        Email:'pranav.bakale@gmail.com',
         Password:'12345'
       })
     }
     callFunc()
   },[])
 
+  const onSignIn=()=>{
+    const result =signIn("pqr@gmail.com","1234556nknkj")
+    console.log(result)
+  }
+
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <button onClick={()=>onSignIn()}>Sign In</button>
     </div>
   );
 }
