@@ -7,6 +7,9 @@ export default ()=>{
     <div>
       <div className='outerBox'>
         <TextInput label='First Name'/>
+        <TextInput label='Last Name'/>
+        <TextInput label="Email"/>
+        <TextInput label="Password"/>
       </div>
     </div>
   )
