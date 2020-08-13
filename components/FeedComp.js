@@ -1,14 +1,14 @@
 import React from 'react'
-import {TextInput} from 'react'
+import {Input,Row,Col,Container} from 'react-materialize'
 
 
 export default ()=>{
   return(
      <Container>
        <Row>
-         <Col>Profile</Col>
-         <Col>Feedback</Col>
-         <Col>Empty</Col>
+         <Col className='teal' s={12} m={4}>Profile</Col>
+         <Col className='red' s={12} m={8}>Feedback</Col>
+         
        </Row>
      
      </Container>

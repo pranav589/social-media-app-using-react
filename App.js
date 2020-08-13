@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
-
+import 'materialize-css/dist/css/materialize.min.css'
 import {userRef} from './firebase'
 import signUp from './api/SignUp'
 import signIn from './api/SignIn'
+import SignIn from './components/SignInComp'
+import SignUp from './components/SignUpComp'
+import Feed from './components/FeedComp'
+import Navbar from './components/Navbar'
 
 
 function App() {
@@ -14,6 +18,7 @@ function App() {
       })
     }
     //callFunc()
+    
   },[])
 
   const onSignIn=()=>{
@@ -28,7 +33,9 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={()=>onSignIn()}>Sign In</button>
+       
+      <Navbar/>
+      <Feed/>
       <button onClick={()=>onSignUp()}>Sign Up</button>
     </div>
   );
