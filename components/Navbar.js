@@ -1,29 +1,35 @@
 import React from 'react'
-import {nav,Icon} from 'react-materialize'
-
+import {Navbar,NavItem,Icon,Container} from 'react-materialize'
+import  'materialize-css'
+import 'materialize-css/dist/css/materialize.min.css';
 
 export default ()=>{
+  
   return(
-    <div>
-    <nav>
-    <div className="nav-wrapper">
-      <a href="#!" className="brand-logo">Logo</a>
-      <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-      <ul className="right hide-on-med-and-down">
-        <li><a href="#">Sass</a></li>
-        <li><a href="#">Components</a></li>
-        <li><a href="#">Javascript</a></li>
-        <li><a href="#">Mobile</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <ul className="sidenav" id="mobile-demo">
-    <li><a href="#">Sass</a></li>
-    <li><a href="#">Components</a></li>
-    <li><a href="#">Javascript</a></li>
-    <li><a href="#">Mobile</a></li>
-  </ul>
-  </div>
+    <Navbar
+  alignLinks="right"
+  brand={<a className="brand-logo" href="#">Logo</a>}
+  id="mobile-nav"
+  menuIcon={<Icon>menu</Icon>}
+  options={{
+    draggable: true,
+    edge: 'left',
+    inDuration: 250,
+    onCloseEnd: null,
+    onCloseStart: null,
+    onOpenEnd: null,
+    onOpenStart: null,
+    outDuration: 200,
+    preventScrolling: true
+  }}
+>
+  <NavItem href="">
+    Getting started
+  </NavItem>
+  <NavItem href="components.html">
+    Components
+  </NavItem>
+  
+</Navbar>
   )
 }

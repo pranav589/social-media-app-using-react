@@ -6,7 +6,7 @@ import signIn from './api/SignIn'
 import SignIn from './components/SignInComp'
 import SignUp from './components/SignUpComp'
 import Feed from './components/FeedComp'
-import Navbar from './components/Navbar'
+import Nav from './components/Navbar'
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="App">
        
-      <Navbar/>
+      <Nav/>
       <Feed/>
       <button onClick={()=>onSignUp()}>Sign Up</button>
     </div>
