@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dropdown, Icon, Button } from "react-materialize";
 import { userRef } from "../firebase";
 import moment from "moment";
-import deletePost from "../api/deletePost";
+import deletePost from "../api/DeletePost";
 import moment from 'moment'
 
 export default ({details,myUid}) => {
@@ -21,6 +21,13 @@ export default ({details,myUid}) => {
        getName()
      }
   },[])
+
+  const onPostDelete=(e,postKey)=>{
+    e.preventDefault()
+   const result= deletePost(postKey)
+   console.log(result)
+  }
+
   return (
     <div>
       <div className="outerBox m10 post">
@@ -88,7 +95,7 @@ export default ({details,myUid}) => {
                     <a
                       href="w"
                       style={{ color: "black" }}
-                      
+                      onClick={(e)=>{onPostDelete(e,details.postKey)}}
                     >
                       Delete
                     </a>

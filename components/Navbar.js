@@ -4,7 +4,7 @@ import  'materialize-css'
 import {firebaseApp} from '../firebase'
 //import 'materialize-css/dist/css/materialize.min.css';
 
-export default ()=>{
+export default ({stage})=>{
   
   return(
     <div style={{background:'royalblue'}}>
@@ -14,6 +14,7 @@ export default ()=>{
   brand={<a className="brand-logo" href="#">Socio</a>}
   className='custom-navbar'
   id="mobile-nav"
+  
   menuIcon={<Icon>menu</Icon>}
   options={{
     draggable: true,
@@ -27,12 +28,12 @@ export default ()=>{
     preventScrolling: true
   }}
 >
-
+  {stage==='loggedIn' && (
   <NavItem href="#" onClick={(e)=>{
     e.preventDefault()
     firebaseApp.auth().signOut()}}>
     Logout
-  </NavItem>
+  </NavItem>)}
   
 </Navbar>
 </Container>

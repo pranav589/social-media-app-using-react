@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Icon } from "react-materialize";
 
 export default ({ userDetails }) =>{
-
+  const [editMode,setEditMode]=useState(false)
   return (
     <div className="outerBox m10 about">
-      
+      {editMode ? (<div>In Edit Mode <span onClick={()=>setEditMode(false)}>Back</span></div>) : (
+        <div>
         <div>
           <div style={{ display: "flex", marginBottom: 10 }}>
             <div>
@@ -33,9 +34,9 @@ export default ({ userDetails }) =>{
             </div>
             <div
               style={{ cursor: "pointer" }}
-              
+              onClick={()=>setEditMode (true)}
             >
-              <Icon>edit</Icon>
+              <Icon >edit</Icon>
             </div>
           </div>
           <div style={{ borderTop: "1px solid lightgray" }}>
@@ -53,6 +54,7 @@ export default ({ userDetails }) =>{
             </div>
           </div>
         </div>
+        </div>)}
       
     </div>
   );
