@@ -11,6 +11,7 @@ export default () => {
       const uid=firebaseApp.auth().currentUser.uid
       const output=AddPost(uid,content)
       if(output===true){
+        setContent('')
         console.log('Post Added')
       }
       if(output===false){
@@ -26,7 +27,7 @@ export default () => {
         {content}
         <Row style={{ marginBottom: 0 }}>
           <Textarea
-            
+            value={content}
             s={12}
             className="custom-textArea"
             placeholder="Write your post here..."

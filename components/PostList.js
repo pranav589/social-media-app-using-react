@@ -1,11 +1,13 @@
 import React,{useEffect,useState} from 'react'
 import GetPost from '../api/GetPost'
-import {postRef} from '../firebase'
+import {postRef,firebaseApp} from '../firebase'
 import SinglePost from './SinglePost'
+
 
 const PostList=()=>{
 
   const [posts,setPosts]=useState([])
+  const [myUid,setMyUid]=useState('')
   useEffect(()=>{
      const getAllPosts=async ()=>{
         postRef.on('value',snap=>{
@@ -16,6 +18,8 @@ const PostList=()=>{
              postKey:singlePost.key
            })
          })
+         const uid=firebaseApp.auth().currentUser.uid
+         setMyUid(uid)
          setPosts(fetchedPosts)
        })
      }
@@ -25,7 +29,7 @@ const PostList=()=>{
   
   return(
     <div>
-      {posts.map(singlePost=><SinglePost details={singlePost}/>)}
+      {posts.map(singlePost=><SinglePost details={singlePost} myUid={myUid}/>)}
     </div>
   )
 }

@@ -4,7 +4,8 @@ import { userRef } from "../firebase";
 import moment from "moment";
 import deletePost from "../api/deletePost";
 
-export default ({details}) => {
+export default ({details,myUid}) => {
+  
   const [firstName,setFirstName]=useState('')
   const [lastName,setLastName]=useState('')
   
@@ -50,13 +51,13 @@ export default ({details}) => {
                     fontWeight: 600
                   }}
                 >
-                  pranav bakale{firstName} {lastName}
+                  {firstName} {lastName}
                 </div>
                 <div style={{ fontSize: 12, color: "gray" }}>
                   
                 </div>
               </div>
-              
+              {myUid === details.createdBy && (
                 <div>
                   <Dropdown
                     options={{
@@ -92,7 +93,7 @@ export default ({details}) => {
                     </a>
                   </Dropdown>
                 </div>
-              
+              )}
             </div>
           </div>
           <div>{details && details.content ? details.content : ''}</div>
