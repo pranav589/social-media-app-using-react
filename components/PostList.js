@@ -1,18 +1,31 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import GetPost from '../api/GetPost'
+import {postRef} from '../firebase'
+import SinglePost from './SinglePost'
 
 const PostList=()=>{
+
+  const [posts,setPosts]=useState([])
   useEffect(()=>{
      const getAllPosts=async ()=>{
-       const result=await GetPost()
-       console.log(result)
+        postRef.on('value',snap=>{
+          var fetchedPosts=[]
+         snap.forEach(singlePost=>{
+           fetchedPosts.push({
+             ...singlePost.val(),
+             postKey:singlePost.key
+           })
+         })
+         setPosts(fetchedPosts)
+       })
      }
       getAllPosts()
      
   },[])
+  
   return(
     <div>
-      hello
+      {posts.map(singlePost=><SinglePost details={singlePost}/>)}
     </div>
   )
 }

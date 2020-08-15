@@ -14,7 +14,7 @@ export default ({ userDetails }) => {
         </Col>
         <Col s={12} m={8}>
           <AddPost />
-          <SinglePost/>
+          
           <PostList/>
         </Col>
       </Row>

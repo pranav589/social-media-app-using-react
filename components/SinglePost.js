@@ -4,9 +4,21 @@ import { userRef } from "../firebase";
 import moment from "moment";
 import deletePost from "../api/deletePost";
 
-export default () => {
+export default ({details}) => {
+  const [firstName,setFirstName]=useState('')
+  const [lastName,setLastName]=useState('')
   
-
+  useEffect(()=>{
+     const getName=()=>{
+       userRef.child(details.createdBy).once('value',snap=>{
+         setFirstName(snap.val()['firstName'])
+         setLastName(snap.val()['lastName'])
+       })
+     }
+     if((details && details.createdBy)){
+       getName()
+     }
+  },[])
   return (
     <div>
       <div className="outerBox m10 post">
@@ -38,7 +50,7 @@ export default () => {
                     fontWeight: 600
                   }}
                 >
-                  pranav bakale
+                  pranav bakale{firstName} {lastName}
                 </div>
                 <div style={{ fontSize: 12, color: "gray" }}>
                   
@@ -83,7 +95,7 @@ export default () => {
               
             </div>
           </div>
-          <div>loreum ipsum ahhahshhss sjjsjsjsjs jjsjsjsjs</div>
+          <div>{details && details.content ? details.content : ''}</div>
         </div>
       </div>
     </div>
