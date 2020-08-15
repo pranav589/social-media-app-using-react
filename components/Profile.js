@@ -54,7 +54,7 @@ export default ({ userDetails }) =>{
               About me:
             </div>
             <div style={{ fontSize: 12 }}>
-              Web ddveloper
+              Web developer
             </div>
           </div>
         </div>

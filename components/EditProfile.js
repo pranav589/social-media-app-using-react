@@ -9,6 +9,7 @@ export default ({changeToFalse})=>{
   
      const handleSubmit=()=>{
        const uid=firebaseApp.auth().currentUser.uid
+       console.log(uid)
        const data={
          uid,
          firstName,
