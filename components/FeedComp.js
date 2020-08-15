@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, TextInput } from "react-materialize";
 import Profile from "./Profile";
-import AddPost from "./AddPost";
+import AddPost from "./AddPostComp";
 import SinglePost from "./SinglePost";
 import PostList from "./PostList";
 
