@@ -19,7 +19,7 @@
 }
 
 @media (max-width:600px){
-  .add,.about{
+  .add,.about,.post{
     width:350px
   }
 }
