@@ -6,7 +6,8 @@ export default (uid,content)=>{
   try{
   postRef.push({
     createdBy:uid,
-    content:content
+    content:content,
+    createdAt:new Date().toLocaleString()
   })
   return true
   }catch(error){

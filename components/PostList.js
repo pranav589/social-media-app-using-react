@@ -3,8 +3,8 @@ import GetPost from '../api/GetPost'
 
 const PostList=()=>{
   useEffect(()=>{
-     const getAllPosts=()=>{
-       const result=GetPost()
+     const getAllPosts=async ()=>{
+       const result=await GetPost()
        console.log(result)
      }
       getAllPosts()
