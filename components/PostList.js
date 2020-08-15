@@ -20,6 +20,7 @@ const PostList=()=>{
          })
          const uid=firebaseApp.auth().currentUser.uid
          setMyUid(uid)
+         fetchedPosts.reverse()
          setPosts(fetchedPosts)
        })
      }
