@@ -55,7 +55,7 @@ export default ({details,myUid}) => {
                   {firstName} {lastName}
                 </div>
                 <div style={{ fontSize: 12, color: "gray" }}>
-                  
+                  {moment(details.createdAt).fromNow()}
                 </div>
               </div>
               {myUid === details.createdBy && (
