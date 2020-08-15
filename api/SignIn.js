@@ -1,7 +1,7 @@
 import {firebaseApp,userRef} from '../firebase'
 
 
-export default (email,password)=>{
+export default ({email,password})=>{
   console.log('into the func')
   firebaseApp.auth().signInWithEmailAndPassword(email,password).then((data)=>{
     console.log(data.user)
@@ -12,7 +12,7 @@ export default (email,password)=>{
   }).catch((err)=>{
     console.log(err.message)
     console.log('error')
-    return err
+    return err.message
   })
 }
 

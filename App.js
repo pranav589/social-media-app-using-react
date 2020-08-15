@@ -39,6 +39,7 @@ function App() {
     // User is signed in.
     console.log(user.uid)
     setStage('loggedIn')
+    setSignUpSignIn('SI')
   } else {
     // No user is signed in.
     console.log('no user logged in')

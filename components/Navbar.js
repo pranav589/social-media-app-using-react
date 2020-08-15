@@ -28,7 +28,9 @@ export default ()=>{
   }}
 >
 
-  <NavItem href="#" onClick={()=>{firebaseApp.auth().signOut()}}>
+  <NavItem href="#" onClick={(e)=>{
+    e.preventDefault()
+    firebaseApp.auth().signOut()}}>
     Logout
   </NavItem>
   
