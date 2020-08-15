@@ -3,6 +3,7 @@ import { Dropdown, Icon, Button } from "react-materialize";
 import { userRef } from "../firebase";
 import moment from "moment";
 import deletePost from "../api/deletePost";
+import moment from 'moment'
 
 export default ({details,myUid}) => {
   
