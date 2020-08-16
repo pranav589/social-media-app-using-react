@@ -9,7 +9,7 @@ export default ({ userDetails }) => {
   };
 
   return (
-    <div className="outerBox m10 about">
+    <div className="outerBox m10">
       {editMode ? (
         <div>
           <EditProfile
@@ -35,7 +35,7 @@ export default ({ userDetails }) => {
                       ? userDetails.imageURL
                       : "https://specials-images.forbesimg.com/imageserve/5d2388f14c687b00085c0f91/416x416.jpg?background=000000&cropX1=0&cropX2=1559&cropY1=130&cropY2=1690"
                   }
-                  alt="profile photo"
+                  alt="profile photi"
                   height="100%"
                 />
               </div>
@@ -63,7 +63,8 @@ export default ({ userDetails }) => {
               About me:
             </div>
             <div style={{ fontSize: 12 }}>
-              Web developer
+              Software Engineer, loves to teach CS. Sports Football, Table
+              Tennis, Basketball and Badminton
             </div>
           </div>
         </div>

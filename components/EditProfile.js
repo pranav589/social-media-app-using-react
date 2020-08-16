@@ -1,34 +1,34 @@
 import React, { useState } from "react";
-import { firebaseApp,storageRef} from "../firebase";
+import { firebaseApp, storageRef } from "../firebase";
 import editUser from "../api/EditUser";
 
 export default ({ changeToFalse, userDetails }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [image,setImage]=useState("")
-  
+  const [image, setImage] = useState("");
 
   const onSubmit = () => {
-    const uid = firebaseApp.auth().currentUser.uid
+    const uid = firebaseApp.auth().currentUser.uid;
 
-    if(image){
-      var uploadTask=storageRef.ref('image/${image.name}').put(image)
-      uploadTask.on("state_changed",()=>{
-
-      },(error)=>{
-          console.log(error)
-      },()=>{
-         //adding url to db
-         uploadTask.snapshot.ref.getDownloadURL().then(function(imageURL){
-           console.log('File available at',downloadURL)
-        
-  
+    if (image) {
+      console.log("Begin");
+      var uploadTask = storageRef.ref(`image/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        () => {},
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("getting URL");
+          //Add URL to the Database
+          uploadTask.snapshot.ref.getDownloadURL().then(function(imageURL) {
             const data = {
               uid,
               firstName,
               lastName,
-              email:userDetails.email,
-              imageURL
+              imageURL,
+              email: userDetails.email
             };
 
             const result = editUser(data);
@@ -39,33 +39,30 @@ export default ({ changeToFalse, userDetails }) => {
 
             if (result === false) {
               console.log("ERROR");
-            
             }
-         })
-      }
-      )
-        }else{
-          const data={
-            uid,
-            firstName,
-            lastName
-          }
-
-          const result=editUser(data)
-
-          if(result===true){
-            console.log('edited')
-          }
-
-          if(result===false){
-            console.log("error")
-          }
+          });
         }
-      
-  
+      );
+    } else {
+      const data = {
+        uid,
+        firstName,
+        lastName
+      };
 
-  }
-    return (
+      const result = editUser(data);
+
+      if (result === true) {
+        console.log("User Info Edited");
+      }
+
+      if (result === false) {
+        console.log("ERROR");
+      }
+    }
+  };
+
+  return (
     <div>
       <div onClick={() => changeToFalse()}>Go Back</div>
       {image && (
@@ -83,4 +80,4 @@ export default ({ changeToFalse, userDetails }) => {
       <button onClick={onSubmit}>Submit</button>
     </div>
   );
-}
+};
