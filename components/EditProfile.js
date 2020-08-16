@@ -5,6 +5,7 @@ import editUser from "../api/EditUser";
 export default ({ changeToFalse, userDetails }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [image,setImage]=useState("")
   
 
   const onSubmit = () => {
@@ -31,10 +32,13 @@ export default ({ changeToFalse, userDetails }) => {
   
 
 
-  return (
+    return (
     <div>
       <div onClick={() => changeToFalse()}>Go Back</div>
-      
+      {image && (
+        <img src={URL.createObjectURL(image)} alt="profile pic" height="40px" />
+      )}
+      <input type="file" onChange={event => setImage(event.target.files[0])} />
       <input
         value={firstName}
         onChange={event => setFirstName(event.target.value)}
@@ -46,4 +50,4 @@ export default ({ changeToFalse, userDetails }) => {
       <button onClick={onSubmit}>Submit</button>
     </div>
   );
-};
+}
