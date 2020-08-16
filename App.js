@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import 'materialize-css/dist/css/materialize.min.css'
-import {firebaseApp} from './firebase'
+import {firebaseApp,userRef} from './firebase'
 
 import SignIn from './components/SignInComp'
 import SignUp from './components/SignUpComp'
@@ -13,6 +13,7 @@ import ProfilePage from './components/ProfilePage'
 function App() {
   const [stage,setStage]=useState('')
   const [signUpSignIn,setSignUpSignIn]=useState('SI')
+  const[userDetails,setUserDetails]=useState({})
   
   useEffect(()=>{
     function callFunc(){
@@ -39,6 +40,7 @@ function App() {
   if (user) {
     // User is signed in.
     console.log(user.uid)
+    userRef.child(user.uid).once('value',snap=>{setUserDetails(snap.val())})
     setStage('loggedIn')
     setSignUpSignIn('SI')
   } else {
@@ -59,7 +61,7 @@ const changeState=(value)=>{
       <Router>
       
       <Route path='/' exact>
-      {stage==='loggedIn' && <Feed/>}
+      {stage==='loggedIn' && <Feed userDetails={userDetails}/>}
       {stage ==='notLoggedIn' && signUpSignIn==="SI" && <SignIn changeState={changeState}/>}
       {stage==='notLoggedIn' && signUpSignIn==='SU' && <SignUp changeState={changeState}/>}
       </Route>
