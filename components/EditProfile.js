@@ -1,37 +1,49 @@
-import React,{useState} from 'react'
-import {firebaseApp} from '../firebase'
-import editUser from '../api/EditUser'
+import React, { useState } from "react";
+import { firebaseApp} from "../firebase";
+import editUser from "../api/EditUser";
 
-export default ({changeToFalse})=>{
-   
-   const [firstName,setFirstName]=useState("")
-   const [lastName,setLastName]=useState("")
+export default ({ changeToFalse, userDetails }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   
-     const handleSubmit=()=>{
-       const uid=firebaseApp.auth().currentUser.uid
-       console.log(uid)
-       const data={
-         uid,
-         firstName,
-         lastName
-       }
-      const result=editUser(data)
 
-      if(result){
-        console.log('user edited')
-      }
+  const onSubmit = () => {
+    const uid = firebaseApp.auth().currentUser.uid
+            const data = {
+              uid,
+              firstName,
+              lastName,
+            
+            };
 
-      if(result===false){
-        console.log("error")
-      }
-     }
+            const result = editUser(data);
+
+            if (result === true) {
+              console.log("User Info Edited");
+            }
+
+            if (result === false) {
+              console.log("ERROR");
+            
+          }
+        }
+      
   
-  return(
+
+
+  return (
     <div>
-    <div onClick={()=>changeToFalse()}>Go Back</div>
-      <input value={firstName} onChange={e=>setFirstName(e.target.value)}/>
-      <input value={lastName} onChange={e=>setLastName(e.target.value)}/>
-      <button onClick={handleSubmit}>Submit</button>
+      <div onClick={() => changeToFalse()}>Go Back</div>
+      
+      <input
+        value={firstName}
+        onChange={event => setFirstName(event.target.value)}
+      />
+      <input
+        value={lastName}
+        onChange={event => setLastName(event.target.value)}
+      />
+      <button onClick={onSubmit}>Submit</button>
     </div>
-  )
-}
+  );
+};

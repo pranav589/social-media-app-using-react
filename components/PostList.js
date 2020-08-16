@@ -30,7 +30,7 @@ const PostList=()=>{
   
   return(
     <div>
-      {posts.map(singlePost=><SinglePost details={singlePost} myUid={myUid}/>)}
+      {posts.map(singlePost=><SinglePost details={singlePost} myUid={myUid} key={singlePost.postKey}/>)}
     </div>
   )
 }

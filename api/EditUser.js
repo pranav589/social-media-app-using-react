@@ -1,12 +1,10 @@
-import React from 'react'
-import {userRef} from '../firebase'
+import { userRef } from "../firebase";
 
-export default ({uid,firstName,lastName})=>
-console.log(uid)
-{
+export default ({ uid, firstName, lastName, imageURL, email }) => {
   userRef.child(uid).set({
-     firstName,
-     lastName
-     
-  })
-}
+  
+    firstName,
+    lastName,
+    
+  });
+};

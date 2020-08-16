@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { Icon } from "react-materialize";
-import EditProfile from './EditProfile'
+import EditProfile from "./EditProfile";
+export default ({ userDetails }) => {
+  const [editMode, setEditMode] = useState(false);
 
-export default ({ userDetails }) =>{
-  const [editMode,setEditMode]=useState(false)
-  const changeToFalse=()=>{
-    setEditMode(false)
-  }
+  const changeToFalse = () => {
+    setEditMode(false);
+  };
+
   return (
     <div className="outerBox m10 about">
-      {editMode ? <EditProfile changeToFalse={changeToFalse}/> : (
+      {editMode ? (
         <div>
+          <EditProfile
+            changeToFalse={changeToFalse}
+            userDetails={userDetails}
+          />
+        </div>
+      ) : (
         <div>
           <div style={{ display: "flex", marginBottom: 10 }}>
             <div>
@@ -34,13 +41,15 @@ export default ({ userDetails }) =>{
               </div>
             </div>
             <div style={{ marginLeft: 10, flex: 1 }}>
-              Pranav Bakale
+              {userDetails && userDetails.firstName
+                ? `${userDetails.firstName} ${userDetails.lastName}`
+                : "Loading"}
             </div>
             <div
               style={{ cursor: "pointer" }}
-              onClick={()=>setEditMode (true)}
+              onClick={() => setEditMode(true)}
             >
-              <Icon >edit</Icon>
+              <Icon>edit</Icon>
             </div>
           </div>
           <div style={{ borderTop: "1px solid lightgray" }}>
@@ -58,8 +67,7 @@ export default ({ userDetails }) =>{
             </div>
           </div>
         </div>
-        </div>)}
-      
+      )}
     </div>
   );
 };

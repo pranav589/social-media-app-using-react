@@ -1,12 +1,13 @@
 import React, { useEffect,useState } from "react";
 import 'materialize-css/dist/css/materialize.min.css'
-import {userRef,firebaseApp} from './firebase'
-import signUp from './api/SignUp'
-import signIn from './api/SignIn'
+import {firebaseApp} from './firebase'
+
 import SignIn from './components/SignInComp'
 import SignUp from './components/SignUpComp'
 import Feed from './components/FeedComp'
 import Nav from './components/Navbar'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import ProfilePage from './components/ProfilePage'
 
 
 function App() {
@@ -55,10 +56,17 @@ const changeState=(value)=>{
     <div className="App">
        
       <Nav stage={stage}/>
+      <Router>
+      
+      <Route path='/' exact>
       {stage==='loggedIn' && <Feed/>}
       {stage ==='notLoggedIn' && signUpSignIn==="SI" && <SignIn changeState={changeState}/>}
       {stage==='notLoggedIn' && signUpSignIn==='SU' && <SignUp changeState={changeState}/>}
-      
+      </Route>
+      <Route path='/:uid'>
+         <div><ProfilePage/></div>
+      </Route>
+      </Router>
       
     </div>
   );
