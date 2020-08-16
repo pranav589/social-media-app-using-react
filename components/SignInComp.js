@@ -46,7 +46,7 @@ export default props => {
           <Icon right>send</Icon>
         </Button>
         <p>
-        Create a new account{" "}
+          Already have an account?{" "}
           <span
             onClick={() => {
               props.changeState("SU");

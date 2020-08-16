@@ -9,7 +9,7 @@ export default ({ userDetails }) => {
   };
 
   return (
-    <div className="outerBox m10 about">
+    <div className="outerBox m10">
       {editMode ? (
         <div>
           <EditProfile

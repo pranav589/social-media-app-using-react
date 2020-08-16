@@ -10,12 +10,11 @@ export default ({ userDetails }) => {
     <Container>
       <Row>
         <Col s={12} m={4}>
-          <Profile userDetails={userDetails}/>
+          <Profile userDetails={userDetails} />
         </Col>
         <Col s={12} m={8}>
           <AddPost />
-          
-          <PostList/>
+          <PostList />
         </Col>
       </Row>
     </Container>

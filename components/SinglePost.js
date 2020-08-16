@@ -3,34 +3,34 @@ import { Dropdown, Icon, Button } from "react-materialize";
 import { userRef } from "../firebase";
 import moment from "moment";
 import deletePost from "../api/DeletePost";
-import moment from 'moment'
 
-export default ({details,myUid}) => {
-  
-  const [firstName,setFirstName]=useState('')
-  const [lastName,setLastName]=useState('')
-  
-  useEffect(()=>{
-     const getName=()=>{
-       userRef.child(details.createdBy).once('value',snap=>{
-         setFirstName(snap.val()['firstName'])
-         setLastName(snap.val()['lastName'])
-       })
-     }
-     if((details && details.createdBy)){
-       getName()
-     }
-  },[])
+export default ({ details, myUID }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [imageURL, setImageURL] = useState("");
 
-  const onPostDelete=(e,postKey)=>{
-    e.preventDefault()
-   const result= deletePost(postKey)
-   console.log(result)
-  }
+  useEffect(() => {
+    const getName = () => {
+      userRef.child(details.createdBy).once("value", snap => {
+        setFirstName(snap.val()["firstName"]);
+        setLastName(snap.val()["lastName"]);
+        setImageURL(snap.val()["imageURL"]);
+      });
+    };
+    if (details && details.createdBy) {
+      getName();
+    }
+  }, []);
+
+  const onPostDelete = (event, postKey) => {
+    event.preventDefault();
+    const result = deletePost(postKey);
+    console.log(result);
+  };
 
   return (
     <div>
-      <div className="outerBox m10 post">
+      <div className="outerBox m10">
         <div>
           <div>
             <div style={{ display: "flex", marginBottom: 10 }}>
@@ -44,9 +44,11 @@ export default ({details,myUid}) => {
                   }}
                 >
                   <img
-                    src=
-                      "https://specials-images.forbesimg.com/imageserve/5d2388f14c687b00085c0f91/416x416.jpg?background=000000&cropX1=0&cropX2=1559&cropY1=130&cropY2=1690"
-                    
+                    src={
+                      imageURL
+                        ? imageURL
+                        : "https://specials-images.forbesimg.com/imageserve/5d2388f14c687b00085c0f91/416x416.jpg?background=000000&cropX1=0&cropX2=1559&cropY1=130&cropY2=1690"
+                    }
                     alt="profile photi"
                     height="100%"
                   />
@@ -62,10 +64,10 @@ export default ({details,myUid}) => {
                   {firstName} {lastName}
                 </div>
                 <div style={{ fontSize: 12, color: "gray" }}>
-                  {details.createdAt}
+                  {moment(details.createdAt).fromNow()}
                 </div>
               </div>
-              {myUid === details.createdBy && (
+              {myUID === details.createdBy && (
                 <div>
                   <Dropdown
                     options={{
@@ -95,7 +97,9 @@ export default ({details,myUid}) => {
                     <a
                       href="w"
                       style={{ color: "black" }}
-                      onClick={(e)=>{onPostDelete(e,details.postKey)}}
+                      onClick={event => {
+                        onPostDelete(event, details.postKey);
+                      }}
                     >
                       Delete
                     </a>
@@ -104,7 +108,7 @@ export default ({details,myUid}) => {
               )}
             </div>
           </div>
-          <div>{details && details.content ? details.content : ''}</div>
+          <div>{details && details.content ? details.content : ""}</div>
         </div>
       </div>
     </div>

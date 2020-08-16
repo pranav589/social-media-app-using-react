@@ -59,7 +59,7 @@ export default props => {
           <span
             onClick={() => {
               props.changeState("SI");
-            }} style={{color:'green',fontWeight:600, cursor:'pointer'}}
+            }}
           >
             Sign In
           </span>
